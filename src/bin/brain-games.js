@@ -1,10 +1,5 @@
 #!/usr/local/bin/node
-import { hello, question, yourAnswer, checkAnswer } from '..';
 
-hello();
+import { hello } from "..";
 
-question();
-
-yourAnswer();
-
-checkAnswer();
+hello()
