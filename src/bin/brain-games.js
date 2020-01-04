@@ -1,6 +1,10 @@
 #!/usr/local/bin/node
-import userName from '..';
+import { hello, question, yourAnswer, checkAnswer } from '..';
 
-console.log('Welcome to the Brain Games!');
+hello();
 
-userName('May I have your name? ');
+question();
+
+yourAnswer();
+
+checkAnswer();
