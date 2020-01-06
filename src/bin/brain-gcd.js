@@ -1,5 +1,4 @@
 #!/usr/local/bin/node
-import { hello, game } from '..';
+import game from '..';
 
-hello('Find the greatest common divisor of given numbers.');
-game()
+game('Find the greatest common divisor of given numbers.');

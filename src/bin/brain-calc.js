@@ -1,5 +1,4 @@
 #!/usr/local/bin/node
-import { hello, game } from '..';
+import game from '..';
 
-hello('What is the result of the expression?');
-game()
+game('What is the result of the expression?');

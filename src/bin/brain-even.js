@@ -1,5 +1,4 @@
 #!/usr/local/bin/node
-import { hello, game } from '..';
+import game from '..';
 
-hello('Answer "yes" if the number is even, otherwise answer "no"');
-game()
+game('Answer "yes" if the number is even, otherwise answer "no"');
