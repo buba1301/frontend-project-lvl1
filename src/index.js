@@ -30,6 +30,9 @@ export const game = (i = 3) => {
     if (gameName === 'What is the result of the expression?') {
       return 'calc';
     }
+    if (gameName === 'Find the greatest common divisor of given numbers.') {
+      return 'gcd';
+    }
   };
 
   const key = wichGame(rules);
@@ -48,6 +51,18 @@ export const game = (i = 3) => {
       console.log(`Question: ${randomNum1} ${randomOper} ${randomNum2}`);
       cuurentNum += eval(`${randomNum1} ${randomOper} ${randomNum2}`);
     },
+    gcd: (num) => {
+      const randomNum1 = getRandomInt(num);
+      const randomNum2 = getRandomInt(num);
+      console.log(`Question: ${randomNum1} ${randomNum2}`);
+      const gcd = (a, b) => {
+        if (b == 0) {
+          return Math.abs(a);
+        }
+        return gcd(b, a % b);
+      };
+      cuurentNum += gcd(randomNum1, randomNum2);
+    },
   };
 
   let answer = '';
@@ -60,12 +75,22 @@ export const game = (i = 3) => {
 
   const correct = 'Correct!';
 
-  const notCorrectEven = {
+  const notCorrect = {
     even: () => {
-      if (isEven()) {
-        return console.log(`'no' is wrong answer ;(. Correct answer was 'yes'. Let's try again, ${userName}!`);
+      if(isEven()) {
+        console.log(`'no' is wrong answer ;(. Correct answer was 'yes'.`);
+        return false;
       }
-      return console.log(`'yes' is wrong answer ;(. Correct answer was 'no'. Let's try again, ${userName}!`);
+      console.log(`'yes' is wrong answer ;(. Correct answer was 'no'.`);
+      return false;
+    },
+    calc: () => {
+      console.log(`${answer} is wrong answer ;(. Correct answer was ${cuurentNum}.`);
+      return false;
+    },
+    gcd: () => {
+      console.log(`${answer} is wrong answer ;(. Correct answer was ${cuurentNum}.`);
+      return false;
     },
   };
 
@@ -78,11 +103,17 @@ export const game = (i = 3) => {
       if (!isEven() && arg === 'no') {
         return console.log(correct);
       }
-      return notCorrectEven[key]();
+      return notCorrect[key]();
     },
     calc: (arg) => {
       if (cuurentNum !== +arg) {
-        return console.log(`'${arg}' is wrong answer ;(. Correct answer was '${cuurentNum}'. Let's try again, ${userName}!`);
+        return notCorrect[key]();
+      }
+      return console.log(correct);
+    },
+    gcd: (arg) => {
+      if (cuurentNum !== +arg) {
+        return notCorrect[key]();
       }
       return console.log(correct);
     },
@@ -90,11 +121,14 @@ export const game = (i = 3) => {
 
   const runQuestion = question[key];
   const runcheckAnswer = checkAnswer[key];
+
   if (i === 0) {
     return console.log(`Congratulations, ${userName}!`);
   }
   runQuestion(maxNum);
   yourAnswer();
-  runcheckAnswer(answer);
+  if (runcheckAnswer(answer) === false) {
+    return console.log(`Let's try again, ${userName}!`);
+  }
   return game(i - 1);
 };
