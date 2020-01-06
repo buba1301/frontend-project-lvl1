@@ -1,5 +1,5 @@
 #!/usr/local/bin/node
 
-import { hello } from "..";
+import { hello } from '..';
 
-hello()
+hello();
