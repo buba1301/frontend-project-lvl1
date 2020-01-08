@@ -7,12 +7,10 @@ export default (makeQustion, rightAnswer, userName) => {
 
   const answer = yourAnswer();
 
-  switch (rightAnswer) {
-    case answer:
-      return console.log('Correct!');
-    default:
-      console.log(`${answer} is wrong answer ;(. Correct answer was ${rightAnswer}.`);
-      console.log(`Let's try again, ${userName}!`);
-      return false;
+  if (rightAnswer !== answer) {
+    console.log(`${answer} is wrong answer ;(. Correct answer was ${rightAnswer}.`);
+    console.log(`Let's try again, ${userName}!`);
+    return false;
   }
+  return console.log('Correct!');
 };

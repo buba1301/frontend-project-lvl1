@@ -4,7 +4,7 @@
 [![Build Status](https://travis-ci.com/buba1301/frontend-project-lvl1.svg?branch=master)](https://travis-ci.com/buba1301/frontend-project-lvl1)
 
 Игра "Проверка на чётность" - Суть игры в следующем: пользователю показывается случайное число. И ему нужно ответить yes, если число чётное, или no — если нечётное.
-Пример запуска и выполения игры: Суть игры в следующем: https://asciinema.org/a/Wbkylr5xfiB5N3cnvJkE33EcN
+Пример запуска и выполения игры: Суть игры в следующем: https://asciinema.org/a/Q6LlOzkel5sc3jMv1fmnfcGvc
 
 Игра "Калькулятор". Суть игры в следующем: пользователю показывается случайное математическое выражение, например 35 + 16, которое нужно вычислить и записать правильный ответ.
 Пример запуска и выполения игры: Суть игры в следующем: https://asciinema.org/a/6NQpvrcalVbWYgJ6hgXjFACKc
