@@ -1,9 +1,10 @@
 {
-  "name": "bm-js-project-lvl1",
+  "name": "bm-frontend-project-lvl1",
   "version": "1.0.0",
   "description": "Boris Muzalevskii, Hexlet-project-lvl1",
   "keywords": [
-    "Muza", "Boris"
+    "Muza",
+    "Boris"
   ],
   "main": "index.js",
   "bin": {
