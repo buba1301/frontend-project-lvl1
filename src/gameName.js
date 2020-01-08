@@ -1,8 +1,8 @@
-import startEven from './even';
-import startCalc from './calc';
-import startGcd from './gcd';
-import startProg from './progression';
-import startPrime from './prime';
+import startEven from './Games/even';
+import startCalc from './Games/calc';
+import startGcd from './Games/gcd';
+import startProg from './Games/progression';
+import startPrime from './Games/prime';
 
 
 export const nameList = {

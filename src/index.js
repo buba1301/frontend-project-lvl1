@@ -1,5 +1,5 @@
 import readlineSync from 'readline-sync';
-import { nameList, gameStart } from './Games/gameName';
+import { nameList, gameStart } from './gameName';
 
 export default (gameName = 'games') => {
   console.log('Welcome to the Brain Games!');
