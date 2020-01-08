@@ -1,26 +1,19 @@
-import { maxNum, getRandomInt } from '../Help/randomNum';
-import yourAnswer from '../Help/answer';
-import question from '../Help/qustions';
-import { answerIsNumber } from '../Help/checkAnswer';
+import { maxNum, getRandomInt } from './Help/randomNum';
+import checkAnswer from './Help/checkAnswer';
 
-export const game = (userName, rounds) => {
-  const operetions = '+-*';
-  const randomNum1 = getRandomInt(maxNum);
-  const randomNum2 = getRandomInt(maxNum);
-  const randomOper = operetions[getRandomInt(3)];
-  const makeQustion = `${randomNum1} ${randomOper} ${randomNum2}`;
-  const rightAnswer = eval(`${randomNum1} ${randomOper} ${randomNum2}`);
+export default (userName) => {
+  for (let i = 0; i < 3; i += 1) {
+    const operetions = ' +-*';
+    const randomNum1 = getRandomInt(maxNum);
+    const randomNum2 = getRandomInt(maxNum);
+    const randomOper = operetions[getRandomInt(3)];
+    const makeQustion = `${randomNum1} ${randomOper} ${randomNum2}`;
+    const rightAnswer = eval(`${randomNum1} ${randomOper} ${randomNum2}`).toString();
 
-  if (rounds === 0) {
-    return console.log(`Congratulations, ${userName}!`);
+    const check = checkAnswer(makeQustion, rightAnswer, userName);
+    if (check === false) {
+      return;
+    }
   }
-  question(makeQustion);
-
-  const answer = yourAnswer();
-
-  if (answerIsNumber(answer, rightAnswer) === false) {
-    return console.log(`Let's try again, ${userName}!`);
-  }
-  return game(userName, rounds - 1);
+  console.log(`Congratulations, ${userName}!`);
 };
-export default game;

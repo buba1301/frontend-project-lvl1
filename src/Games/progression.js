@@ -1,37 +1,31 @@
-import { maxNum, getRandomInt } from '../Help/randomNum';
-import yourAnswer from '../Help/answer';
-import question from '../Help/qustions';
-import { answerIsNumber } from '../Help/checkAnswer';
+import { maxNum, getRandomInt } from './Help/randomNum';
+import checkAnswer from './Help/checkAnswer';
 
-export const game = (userName, rounds = 3) => {
-  const cuurentNum = getRandomInt(maxNum);
-  const prog = getRandomInt(5);
-  const randomIndex = getRandomInt(9);
+export default (userName) => {
+  for (let i = 0; i < 3; i += 1) {
+    const cuurentNum = getRandomInt(maxNum);
+    const randomNum = getRandomInt(5);
+    const randomIndex = getRandomInt(9);
 
-  const makeProgression = (num) => {
-    const iter = (elem, acc) => {
-      if (acc.length === 10) {
-        return acc;
-      }
-      return iter(elem + prog, [...acc, elem]);
+    const makeProgression = (num) => {
+      const iter = (elem, acc) => {
+        if (acc.length === 10) {
+          return acc;
+        }
+        return iter(elem + randomNum, [...acc, elem]);
+      };
+      return iter(num, []);
     };
-    return iter(num, []);
-  };
-  const progression = makeProgression(cuurentNum);
-  const makeQustion = progression.map((elem) => (elem === progression[randomIndex] ? '..' : elem)).join(' ');
-  const rightAnswer = progression[randomIndex];
+    const progression = makeProgression(cuurentNum);
+
+    const makeQustion = progression.map((elem) => (elem === progression[randomIndex] ? '..' : elem)).join(' ');
+    const rightAnswer = progression[randomIndex].toString();
 
 
-  if (rounds === 0) {
-    return console.log(`Congratulations, ${userName}!`);
+    const check = checkAnswer(makeQustion, rightAnswer, userName);
+    if (check === false) {
+      return;
+    }
   }
-  question(makeQustion);
-
-  const answer = yourAnswer();
-
-  if (answerIsNumber(answer, rightAnswer) === false) {
-    return console.log(`Let's try again, ${userName}!`);
-  }
-  return game(userName, rounds - 1);
+  console.log(`Congratulations, ${userName}!`);
 };
-export default game;
