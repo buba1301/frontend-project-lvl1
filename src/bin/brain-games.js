@@ -1,5 +1,4 @@
 #!/usr/local/bin/node
+import game from '..';
 
-import { hello } from '..';
-
-hello();
+game();

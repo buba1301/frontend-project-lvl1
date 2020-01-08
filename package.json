@@ -1,7 +1,8 @@
 {
   "name": "j-project-lvl1",
   "version": "1.0.0",
-  "description": "",
+  "description": "Boris Muzalevskii, Hexlet-project-lvl1",
+  "keywords": ["project-lvl1 Muza"],
   "main": "index.js",
   "bin": {
     "brain-games": "dist/bin/brain-games.js",

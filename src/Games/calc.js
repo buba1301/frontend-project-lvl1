@@ -8,7 +8,18 @@ export default (userName) => {
     const randomNum2 = getRandomInt(maxNum);
     const randomOper = operetions[getRandomInt(3)];
     const makeQustion = `${randomNum1} ${randomOper} ${randomNum2}`;
-    const rightAnswer = eval(`${randomNum1} ${randomOper} ${randomNum2}`).toString();
+    let rightAnswer;
+    switch (randomOper) {
+      case '+':
+        rightAnswer = (randomNum1 + randomNum2).toString();
+        break;
+      case '-':
+        rightAnswer = (randomNum1 - randomNum2).toString();
+        break;
+      default:
+        rightAnswer = (randomNum1 * randomNum2).toString();
+        break;
+    }
 
     const check = checkAnswer(makeQustion, rightAnswer, userName);
     if (check === false) {

@@ -13,8 +13,8 @@ export default (userName) => {
         if (num % d === 0) {
           return false;
         }
-        return true;
       }
+      return true;
     };
 
     const makeQustion = `${cuurentNum}`;

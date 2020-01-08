@@ -9,8 +9,7 @@ export default (makeQustion, rightAnswer, userName) => {
 
   switch (rightAnswer) {
     case answer:
-      console.log('Correct!');
-      break;
+      return console.log('Correct!');
     default:
       console.log(`${answer} is wrong answer ;(. Correct answer was ${rightAnswer}.`);
       console.log(`Let's try again, ${userName}!`);
