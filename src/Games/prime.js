@@ -1,8 +1,12 @@
-import { maxNum, getRandomInt } from './Help/randomNum';
-import checkAnswer from './Help/checkAnswer';
+import { maxNum, getRandomInt } from '../utils';
+import {
+  gameStart, rounds, hello, finish,
+} from '../index';
 
-export default (userName) => {
-  for (let i = 0; i < 3; i += 1) {
+export default () => {
+  const rules = 'Answer "yes" if given number is prime. Otherwise answer "no"';
+  hello(rules);
+  for (let i = 0; i < rounds; i += 1) {
     const cuurentNum = getRandomInt(maxNum);
 
     const isPrime = (num) => {
@@ -20,10 +24,11 @@ export default (userName) => {
     const makeQustion = `${cuurentNum}`;
     const rightAnswer = isPrime(cuurentNum) ? 'yes' : 'no';
 
-    const check = checkAnswer(makeQustion, rightAnswer, userName);
-    if (check === false) {
+    const result = gameStart(makeQustion, rightAnswer);
+
+    if (result === false) {
       return;
     }
   }
-  console.log(`Congratulations, ${userName}!`);
+  finish();
 };

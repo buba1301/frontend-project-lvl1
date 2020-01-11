@@ -1,8 +1,12 @@
-import { maxNum, getRandomInt } from './Help/randomNum';
-import checkAnswer from './Help/checkAnswer';
+import { maxNum, getRandomInt } from '../utils';
+import {
+  gameStart, rounds, hello, finish,
+} from '../index';
 
-export default (userName) => {
-  for (let i = 0; i < 3; i += 1) {
+export default () => {
+  const rules = 'What is the result of the expression?';
+  hello(rules);
+  for (let i = 0; i < rounds; i += 1) {
     const operations = ' +-*';
     const randomNum1 = getRandomInt(maxNum);
     const randomNum2 = getRandomInt(maxNum);
@@ -15,10 +19,11 @@ export default (userName) => {
     };
     const rightAnswer = `${getRandomOperator[randomOper]()}`;
 
-    const check = checkAnswer(makeQustion, rightAnswer, userName);
-    if (check === false) {
+    const result = gameStart(makeQustion, rightAnswer);
+
+    if (result === false) {
       return;
     }
   }
-  console.log(`Congratulations, ${userName}!`);
+  finish();
 };

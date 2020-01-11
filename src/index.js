@@ -1,15 +1,34 @@
 import readlineSync from 'readline-sync';
-import { nameList, gameStart } from './gameName';
 
-export default (gameName = 'games') => {
+const rounds = 3;
+
+let userName;
+
+const hello = (rules) => {
   console.log('Welcome to the Brain Games!');
 
-  console.log(nameList[gameName]);
+  console.log(rules);
 
-  const userName = readlineSync.question('May I have your name? ');
+  userName = readlineSync.question('May I have your name? ');
 
   console.log(`Hello ${userName}!`);
+};
 
-  if (gameName === 'games') return;
-  gameStart(gameName, userName);
+const gameStart = (makeQustion, rightAnswer) => {
+  console.log(`Question: ${makeQustion}`);
+
+  const answer = readlineSync.question('Your answer ');
+
+  if (rightAnswer !== answer) {
+    console.log(`${answer} is wrong answer ;(. Correct answer was ${rightAnswer}.`);
+    console.log(`Let's try again, ${userName}!`);
+    return false;
+  }
+  console.log('Correct!');
+};
+
+const finish = () => console.log(`Congratulations, ${userName}!`);
+
+export {
+  rounds, gameStart, hello, finish,
 };
