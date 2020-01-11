@@ -2,4 +2,3 @@
 import game from '../Games/prime';
 
 game();
-

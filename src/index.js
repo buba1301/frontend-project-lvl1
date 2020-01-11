@@ -24,7 +24,7 @@ const gameStart = (makeQustion, rightAnswer) => {
     console.log(`Let's try again, ${userName}!`);
     return false;
   }
-  console.log('Correct!');
+  return console.log('Correct!');
 };
 
 const finish = () => console.log(`Congratulations, ${userName}!`);
