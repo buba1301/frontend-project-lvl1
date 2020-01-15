@@ -1,4 +1,5 @@
 
-export const maxNum = 47;
-
-export const getRandomInt = (max) => Math.ceil(Math.random() * Math.ceil(max));
+export default (min, max) => {
+  const rand = min + Math.random() * (max + 1 - min);
+  return Math.floor(rand);
+};

@@ -1,29 +1,25 @@
-import { maxNum, getRandomInt } from '../utils';
-import {
-  gameStart, rounds, hello, finish,
-} from '../index';
+import getRandomInt from '../utils';
+import gameStart from '../index';
+
+const rules = 'Find the greatest common divisor of given numbers.';
+
+const gcd = (a, b) => {
+  if (b === 0) {
+    return Math.abs(a);
+  }
+  return gcd(b, a % b);
+};
 
 export default () => {
-  const rules = 'Find the greatest common divisor of given numbers.';
-  hello(rules);
-  for (let i = 0; i < rounds; i += 1) {
-    const gcd = (a, b) => {
-      if (b === 0) {
-        return Math.abs(a);
-      }
-      return gcd(b, a % b);
-    };
-
-    const randomNum1 = getRandomInt(maxNum);
-    const randomNum2 = getRandomInt(maxNum);
-    const makeQustion = `${randomNum1} ${randomNum2}`;
-    const rightAnswer = gcd(randomNum1, randomNum2).toString();
-
-    const result = gameStart(makeQustion, rightAnswer);
-
-    if (result === false) {
-      return;
-    }
-  }
-  finish();
+  const makeQuestion = () => {
+    const randomNum1 = getRandomInt(1, 47);
+    const randomNum2 = getRandomInt(1, 47);
+    return `${randomNum1} ${randomNum2}`;
+  };
+  const rightAnswer = (value) => {
+    const num1 = +value.split(' ')[0];
+    const num2 = +value.split(' ')[1];
+    return gcd(num1, num2);
+  };
+  gameStart(rules, makeQuestion, rightAnswer);
 };

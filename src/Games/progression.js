@@ -1,34 +1,32 @@
-import { maxNum, getRandomInt } from '../utils';
-import {
-  gameStart, rounds, hello, finish,
-} from '../index';
+import getRandomInt from '../utils';
+import gameStart from '../index';
+
+const rules = 'What number is missing in the progression?';
+
+const makeProgression = (num) => {
+  const randomNum = getRandomInt(1, 9);
+  const iter = (elem, acc) => {
+    if (acc.length === 10) {
+      return acc;
+    }
+    return iter(elem + randomNum, [...acc, elem]);
+  };
+  return iter(num, []);
+};
 
 export default () => {
-  const rules = 'What number is missing in the progression?';
-  hello(rules);
-  for (let i = 0; i < rounds; i += 1) {
-    const cuurentNum = getRandomInt(maxNum);
-    const randomNum = getRandomInt(9);
-    const randomIndex = getRandomInt(9);
-
-    const makeProgression = (num) => {
-      const iter = (elem, acc) => {
-        if (acc.length === 10) {
-          return acc;
-        }
-        return iter(elem + randomNum, [...acc, elem]);
-      };
-      return iter(num, []);
-    };
+  const makeQuestion = () => {
+    const cuurentNum = getRandomInt(1, 47);
     const progression = makeProgression(cuurentNum);
+    const index = getRandomInt(1, 8);
+    return progression.map((elem) => (elem === progression[index] ? '..' : elem)).join(' ');
+  };
+  const checkAnswer = (value) => {
+    const arr = value.split(' ');
+    const missingElementIndex = arr.indexOf('..');
+    const interval = (+arr[missingElementIndex + 1] - +arr[missingElementIndex - 1]) / 2;
+    return +arr[missingElementIndex - 1] + interval;
+  };
 
-    const makeQustion = progression.map((elem) => (elem === progression[randomIndex] ? '..' : elem)).join(' ');
-    const rightAnswer = progression[randomIndex].toString();
-
-    const result = gameStart(makeQustion, rightAnswer);
-    if (result === false) {
-      return;
-    }
-  }
-  finish();
+  gameStart(rules, makeQuestion, checkAnswer);
 };

@@ -1,25 +1,17 @@
 
-import { maxNum, getRandomInt } from '../utils';
-import {
-  gameStart, rounds, hello, finish,
-} from '../index';
+import getRandomInt from '../utils';
+import gameStart from '../index';
+
+const rules = 'Answer "yes" if the number is even, otherwise answer "no"';
+
+const isEven = (num) => num % 2 === 0;
 
 export default () => {
-  const rules = 'Answer "yes" if the number is even, otherwise answer "no"';
-  hello(rules);
-  for (let i = 0; i < rounds; i += 1) {
-    const cuurentNum = getRandomInt(maxNum);
+  const makeQuestion = () => {
+    const randomNum = getRandomInt(1, 47);
+    return randomNum;
+  };
+  const checkAnswer = (number) => (isEven(number) ? 'yes' : 'no');
 
-    const isEven = (num) => num % 2 === 0;
-
-    const makeQustion = `${cuurentNum}`;
-    const rightAnswer = (isEven(cuurentNum) ? 'yes' : 'no');
-
-    const result = gameStart(makeQustion, rightAnswer);
-
-    if (result === false) {
-      return;
-    }
-  }
-  finish();
+  gameStart(rules, makeQuestion, checkAnswer);
 };
