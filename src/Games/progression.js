@@ -3,24 +3,21 @@ import gameStart from '../index';
 
 const description = 'What number is missing in the progression?';
 
+const progressionLength = 10;
+
 const makeProgression = (num) => {
-  const randomNum = getRandomInt(1, 9);
-  const iter = (elem, acc) => {
-    if (acc.length === 10) {
-      return acc;
-    }
-    return iter(elem + randomNum, [...acc, elem]);
-  };
-  return iter(num, []);
+  const difference = getRandomInt(1, 9);
+  const newArr = Array(progressionLength).fill(num);
+  return newArr.map((elem, index) => elem + index * difference);
 };
 
 const getGameData = () => {
-  const cuurentNum = getRandomInt(1, 47);
-  const progression = makeProgression(cuurentNum);
-  const index = getRandomInt(1, 8);
-  const question = progression.map((elem) => (elem === progression[index] ? '..' : elem)).join(' ');
-  const checkAnswer = progression[index];
-  return [question, checkAnswer];
+  const firstMember = getRandomInt(1, 47);
+  const progression = makeProgression(firstMember);
+  const hiddenMemberIndex = getRandomInt(1, progressionLength - 2);
+  const rightAnswer = progression[hiddenMemberIndex];
+  const question = progression.map((elem) => (elem === rightAnswer ? '..' : elem)).join(' ');
+  return [question, rightAnswer.toString()];
 };
 
 export default () => gameStart(description, getGameData);

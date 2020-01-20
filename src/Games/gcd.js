@@ -15,7 +15,7 @@ const getGameData = () => {
   const num2 = getRandomInt(1, 47);
   const question = `${num1} ${num2}`;
   const rightAnswer = gcd(num1, num2);
-  return [question, rightAnswer];
+  return [question, rightAnswer.toString()];
 };
 
 export default () => gameStart(description, getGameData);

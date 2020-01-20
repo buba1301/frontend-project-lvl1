@@ -13,13 +13,11 @@ export default (description, getGameData) => {
 
 
   for (let i = 0; i < rounds; i += 1) {
-    const gameData = getGameData();
+    const [question, rightAnswer] = getGameData();
 
-    console.log(`Question: ${gameData[0]}`);
+    console.log(`Question: ${question}`);
 
     const answer = readlineSync.question('Your answer ');
-
-    const rightAnswer = `${gameData[1]}`;
 
     if (rightAnswer !== answer) {
       console.log(`${answer} is wrong answer ;(. Correct answer was ${rightAnswer}.`);
