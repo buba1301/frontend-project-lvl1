@@ -7,7 +7,7 @@ const isPrime = (num) => {
   if (num <= 1) {
     return false;
   }
-  for (let divisor = 2; divisor * divisor <= num; divisor += 1) {
+  for (let divisor = 2; divisor ** 2 <= num; divisor += 1) {
     if (num % divisor === 0) {
       return false;
     }

@@ -7,8 +7,9 @@ const progressionLength = 10;
 
 const makeProgression = (num) => {
   const difference = getRandomInt(1, 9);
-  const newArr = Array(progressionLength).fill(num);
-  return newArr.map((elem, index) => elem + index * difference);
+  return Array(progressionLength)
+    .fill(num)
+    .map((elem, index) => elem + index * difference);
 };
 
 const getGameData = () => {
